@@ -44,11 +44,18 @@ class Contests extends Model {
       })
       ->groupBy('contests_sports_events_start_date_time.contests_id');
 
+    $contestsUsersEntriesCount = DB::table('contests_users_entries')
+      ->select(DB::raw('contests_users_entries.contest_id, COUNT(*) as entry'))
+      ->groupBy('contests_users_entries.contest_id');
+
     $contests = DB::table('contests')
       ->leftJoin('contests_prizes', 'contests_prizes.id', '=', 'contests.contests_prize_id')
       ->join('leagues', 'leagues.id', '=', 'contests.league_id')
       ->joinSub($contestsStartDateTime, 'contests_start_date_time', function ($join) {
         $join->on('contests.id', '=', 'contests_start_date_time.contests_id');
+      })
+      ->joinSub($contestsUsersEntriesCount, 'contests_users_entries_count', function ($join) {
+        $join->on('contests.id', '=', 'contests_users_entries_count.contest_id');
       })
       ->where('contests.contest_status', 0)
       ->get();
