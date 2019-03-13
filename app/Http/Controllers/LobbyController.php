@@ -18,11 +18,11 @@ class LobbyController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function index() {
-    // $contests = Contests::active()->with('league')->paginate(10);
-    $contests = Contests::contestsWithUserEntry();
+    $contests = new Contests();
+    $result = $contests->getContestsComplete();
 
-    // return view('lobby', ['contests' => $contests]);
-    return $contests;
+    return view('lobby', ['contests' => $result]);
+    // return $result;
   }
 
   /**

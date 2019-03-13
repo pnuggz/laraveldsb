@@ -16,8 +16,7 @@ class CreateSportsEventsTable extends Migration {
       $table->integer('league_id');
       $table->integer('home_team_phase_id');
       $table->integer('away_team_phase_id');
-      $table->date('start_date');
-      $table->time('start_time');
+      $table->dateTime('start_date_time');
       $table->integer('weather_id')->nullable();
       $table->integer('soccer_live_id')->nullable();
       $table->string('whoscored_endlink', 255);
