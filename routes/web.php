@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/', 'LobbyController@index');
 Route::get('/lobby', 'LobbyController@index');
+Route::get('/test', 'LobbyController@test');
 
 Route::get('/contests/{id}/details', 'ContestsController@details');
 

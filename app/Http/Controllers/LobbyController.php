@@ -25,6 +25,10 @@ class LobbyController extends Controller {
     // return $result;
   }
 
+  public function test() {
+    return view('test');
+  }
+
   /**
    * Show the form for creating a new resource.
    *
